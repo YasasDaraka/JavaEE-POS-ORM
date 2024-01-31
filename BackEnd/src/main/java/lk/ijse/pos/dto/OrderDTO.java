@@ -1,12 +1,16 @@
 package lk.ijse.pos.dto;
 
+import lk.ijse.pos.embedded.OrderDetailPK;
 import lk.ijse.pos.entity.Customer;
+import lk.ijse.pos.entity.Item;
 import lk.ijse.pos.entity.Order;
+import lk.ijse.pos.entity.OrderDetails;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -31,6 +35,17 @@ public class OrderDTO {
         Customer customer = new Customer();
         customer.setCusID(this.cusID);
         order.setCustomer(customer);
+        System.out.println(orderDetails);
+        List<OrderDetails> list = new ArrayList<>();
+        for (OrderDetailsDTO or: orderDetails) {
+            OrderDetailPK orderDetailPK = new OrderDetailPK(or.getOid(), or.getItmCode());
+            Order order1 = new Order();
+            order1.setOid(or.getOid());
+            Item item = new Item();
+            item.setItmCode(or.getItmCode());
+            list.add(new OrderDetails(orderDetailPK,or.getItmQTY(),order1,item));
+        }
+        order.setOrderDetails(list);
         return order;
     }
 }

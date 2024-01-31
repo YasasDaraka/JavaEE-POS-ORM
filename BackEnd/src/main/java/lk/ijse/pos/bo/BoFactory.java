@@ -1,8 +1,9 @@
 package lk.ijse.pos.bo;
 import lk.ijse.pos.bo.custom.impl.CustomerBOImpl;
 import lk.ijse.pos.bo.custom.impl.ItemBOImpl;
-/*import lk.ijse.pos.bo.custom.impl.OrderBOImpl;
-import lk.ijse.pos.bo.custom.impl.OrderDetailsBOImpl;*/
+import lk.ijse.pos.bo.custom.impl.OrderBOImpl;
+import lk.ijse.pos.bo.custom.impl.OrderDetailsBOImpl;
+
 
 public class BoFactory {
     private static BoFactory boFactory;
@@ -25,10 +26,10 @@ public class BoFactory {
                 return (T) new CustomerBOImpl();
             case ITEM:
                 return (T) new ItemBOImpl();
-           /* case ORDER:
+            case ORDER:
                 return (T) new OrderBOImpl();
             case ORDER_DETAILS:
-                return (T) new OrderDetailsBOImpl();*/
+                return (T) new OrderDetailsBOImpl();
             default:
                 return null;
         }

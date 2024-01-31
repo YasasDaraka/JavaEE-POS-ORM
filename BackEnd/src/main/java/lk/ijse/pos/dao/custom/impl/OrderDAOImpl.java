@@ -1,36 +1,36 @@
-/*
+
 package lk.ijse.pos.dao.custom.impl;
 
+import lk.ijse.pos.config.SessionFactoryConfig;
 import lk.ijse.pos.dao.custom.OrderDAO;
-import lk.ijse.pos.dao.custom.impl.util.SQLUtil;
 import lk.ijse.pos.entity.Order;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class OrderDAOImpl<T,ID> implements OrderDAO<Order,String> {
     @Override
     public boolean save(Order dto) throws SQLException, ClassNotFoundException {
-        return new SQLUtil().execute("INSERT INTO orders(oid, date, cusID) " +
-                "VALUES(?, ?, ?)",rs->null,dto.getOid(),dto.getDate(),dto.getCusID());
+        return false;
     }
 
     @Override
     public Order search(String id) throws SQLException, ClassNotFoundException {
-        Order order = null;
+        Session session = SessionFactoryConfig.getSession();
         try {
-
-            order = new SQLUtil().execute("SELECT * FROM orders WHERE oid = ?", resultSet -> {
-                while (resultSet.next()) {
-                    return  new Order(resultSet.getString(1), resultSet.getDate(2).toLocalDate(),
-                            resultSet.getString(3));
-                }
-                return null;
-            },id);
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }return order;
+            Order order = session.get(Order.class, id);
+            session.close();
+            return order;
+        } catch (Exception e) {
+            System.out.println("Error Search Order: " + e.getMessage());
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+        return null;
     }
 
     @Override
@@ -45,23 +45,21 @@ public class OrderDAOImpl<T,ID> implements OrderDAO<Order,String> {
 
     @Override
     public ArrayList<Order> getAll() throws SQLException, ClassNotFoundException {
+        Session session = SessionFactoryConfig.getSession();
         ArrayList<Order> orders = new ArrayList<>();
         try {
-            List<Order> result = new SQLUtil().execute("SELECT *\n" +
-                    "FROM orders\n" +
-                    "ORDER BY\n" +
-                    "  CAST(SUBSTRING(oid, 5) AS SIGNED),\n" +
-                    "  SUBSTRING(oid, 1, 4)", resultSet -> {
-                while (resultSet.next()) {
-                    Order order = new Order(resultSet.getString(1), resultSet.getDate(2).toLocalDate(),
-                            resultSet.getString(3));
-                    orders.add(order);
-                }
-                return null;
-            });
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }return orders;
+            Query<Order> query = session.createQuery("SELECT O FROM Order AS O");
+            orders.addAll(query.getResultList());
+            session.close();
+            return orders;
+        } catch (Exception e) {
+            System.out.println("Error load all orders: " + e.getMessage());
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+        return null;
     }
 
     @Override
@@ -69,4 +67,4 @@ public class OrderDAOImpl<T,ID> implements OrderDAO<Order,String> {
         return false;
     }
 }
-*/
+

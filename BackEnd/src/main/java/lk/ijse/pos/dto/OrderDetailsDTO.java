@@ -20,8 +20,7 @@ public class OrderDetailsDTO {
         OrderDetails details = new OrderDetails();
         Item item = new Item();
         item.setItmCode(this.itmCode);
-        item.setItmPrice(this.itmPrice)
-        ;
+        item.setItmPrice(this.itmPrice);
         details.setItem(item);
         details.setItmQTY(this.itmQTY);
 

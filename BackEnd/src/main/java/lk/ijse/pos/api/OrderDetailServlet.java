@@ -1,4 +1,3 @@
-/*
 package lk.ijse.pos.api;
 
 import jakarta.json.bind.Jsonb;
@@ -42,4 +41,3 @@ public class OrderDetailServlet extends HttpServlet {
         }
     }
 }
-*/
