@@ -17,7 +17,7 @@ public class CustomerDAOImpl implements CustomerDAO<Customer, String> {
 
     @Override
     public boolean save(Customer dto) throws SQLException, ClassNotFoundException {
-        Session session = SessionFactoryConfig.getInstance().getSession();
+        Session session = SessionFactoryConfig.getSession();
         Transaction transaction = session.beginTransaction();
 
         try {
@@ -46,7 +46,7 @@ public class CustomerDAOImpl implements CustomerDAO<Customer, String> {
 
     @Override
     public Customer search(String id) throws SQLException, ClassNotFoundException {
-        Session session = SessionFactoryConfig.getInstance().getSession();
+        Session session = SessionFactoryConfig.getSession();
         try {
             Customer customer = session.get(Customer.class, id);
             session.close();
@@ -65,7 +65,7 @@ public class CustomerDAOImpl implements CustomerDAO<Customer, String> {
     @Override
     public boolean delete(String id) throws SQLException, ClassNotFoundException {
 
-        Session session = SessionFactoryConfig.getInstance().getSession();
+        Session session = SessionFactoryConfig.getSession();
         Transaction transaction = session.beginTransaction();
         try {
             Customer customer = session.get(Customer.class, id);
@@ -88,7 +88,7 @@ public class CustomerDAOImpl implements CustomerDAO<Customer, String> {
 
     @Override
     public boolean update(Customer dto) throws SQLException, ClassNotFoundException {
-        Session session = SessionFactoryConfig.getInstance().getSession();
+        Session session = SessionFactoryConfig.getSession();
         Transaction transaction = session.beginTransaction();
         try {
             session.update (dto);
@@ -110,7 +110,7 @@ public class CustomerDAOImpl implements CustomerDAO<Customer, String> {
 
     @Override
     public ArrayList<Customer> getAll() throws SQLException, ClassNotFoundException {
-        Session session = SessionFactoryConfig.getInstance().getSession();
+        Session session = SessionFactoryConfig.getSession();
         ArrayList<Customer> customers = new ArrayList<>();
         try {
             Query<Customer> query = session.createQuery("SELECT C FROM Customer AS C");

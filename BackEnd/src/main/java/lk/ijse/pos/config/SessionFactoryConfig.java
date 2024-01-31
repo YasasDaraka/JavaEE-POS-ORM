@@ -12,9 +12,8 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 
 public class SessionFactoryConfig {
-    private static SessionFactoryConfig factoryConfig;
     private static SessionFactory sessionFactory;
-    private SessionFactoryConfig(){
+    static {
         sessionFactory = new MetadataSources(new StandardServiceRegistryBuilder().loadProperties("hibernate.cfg.properties").build())
                 .addAnnotatedClass(Customer.class)
                 .addAnnotatedClass(Item.class)
@@ -22,15 +21,17 @@ public class SessionFactoryConfig {
                 .addAnnotatedClass(OrderDetails.class)
                 .getMetadataBuilder()
                 .applyImplicitNamingStrategy(ImplicitNamingStrategyJpaCompliantImpl.INSTANCE)
-                .build().buildSessionFactory();
-
+                .build()
+                .buildSessionFactory();
     }
 
-    public static SessionFactoryConfig getInstance(){
-        return (null == factoryConfig) ? factoryConfig = new SessionFactoryConfig() : factoryConfig;
+    private SessionFactoryConfig() {
+    }
+    public static SessionFactory getInstance(){
+        return sessionFactory;
     }
 
-    public Session getSession(){
+    public static Session getSession(){
         return sessionFactory.openSession();
     }
 }

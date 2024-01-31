@@ -15,7 +15,7 @@ public class ItemDAOImpl<T, ID> implements ItemDAO<Item, String> {
 
     @Override
     public boolean save(Item dto) throws SQLException, ClassNotFoundException {
-        Session session = SessionFactoryConfig.getInstance().getSession();
+        Session session = SessionFactoryConfig.getSession();
         Transaction transaction = session.beginTransaction();
 
         try {
@@ -45,7 +45,7 @@ public class ItemDAOImpl<T, ID> implements ItemDAO<Item, String> {
 
     @Override
     public Item search(String id) throws SQLException, ClassNotFoundException {
-        Session session = SessionFactoryConfig.getInstance().getSession();
+        Session session = SessionFactoryConfig.getSession();
         try {
             Item item = session.get(Item.class, id);
             session.close();
@@ -62,7 +62,7 @@ public class ItemDAOImpl<T, ID> implements ItemDAO<Item, String> {
 
     @Override
     public boolean delete(String id) throws SQLException, ClassNotFoundException {
-        Session session = SessionFactoryConfig.getInstance().getSession();
+        Session session = SessionFactoryConfig.getSession();
         Transaction transaction = session.beginTransaction();
         try {
             Item item = session.get(Item.class, id);
@@ -85,7 +85,7 @@ public class ItemDAOImpl<T, ID> implements ItemDAO<Item, String> {
 
     @Override
     public boolean update(Item dto) throws SQLException, ClassNotFoundException {
-        Session session = SessionFactoryConfig.getInstance().getSession();
+        Session session = SessionFactoryConfig.getSession();
         Transaction transaction = session.beginTransaction();
         try {
             session.update (dto);
@@ -108,7 +108,7 @@ public class ItemDAOImpl<T, ID> implements ItemDAO<Item, String> {
 
     @Override
     public ArrayList<Item> getAll() throws SQLException, ClassNotFoundException {
-        Session session = SessionFactoryConfig.getInstance().getSession();
+        Session session = SessionFactoryConfig.getSession();
         ArrayList<Item> items = new ArrayList<>();
         try {
             Query<Item> query = session.createQuery("SELECT C FROM Item AS C");

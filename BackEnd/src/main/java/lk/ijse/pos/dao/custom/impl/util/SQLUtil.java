@@ -1,7 +1,5 @@
 package lk.ijse.pos.dao.custom.impl.util;
 
-import lk.ijse.pos.listener.ContextListener;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
