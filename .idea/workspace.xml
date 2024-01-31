@@ -11,22 +11,8 @@
   <component name="ChangeListManager">
     <list default="true" id="1cf0f781-246c-4855-acd9-9720f15a0a7f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/src/main/java/lk/ijse/pos/api/OrderDetailServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/src/main/java/lk/ijse/pos/api/OrderDetailServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BackEnd/src/main/java/lk/ijse/pos/api/OrderServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/src/main/java/lk/ijse/pos/api/OrderServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/src/main/java/lk/ijse/pos/bo/BoFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/src/main/java/lk/ijse/pos/bo/BoFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/src/main/java/lk/ijse/pos/bo/custom/OrderBO.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/src/main/java/lk/ijse/pos/bo/custom/OrderBO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/src/main/java/lk/ijse/pos/bo/custom/OrderDetailsBO.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/src/main/java/lk/ijse/pos/bo/custom/OrderDetailsBO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/src/main/java/lk/ijse/pos/bo/custom/impl/OrderBOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/src/main/java/lk/ijse/pos/bo/custom/impl/OrderBOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/src/main/java/lk/ijse/pos/bo/custom/impl/OrderDetailsBOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/src/main/java/lk/ijse/pos/bo/custom/impl/OrderDetailsBOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/src/main/java/lk/ijse/pos/dao/DAOFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/src/main/java/lk/ijse/pos/dao/DAOFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/src/main/java/lk/ijse/pos/dao/custom/OrderDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/src/main/java/lk/ijse/pos/dao/custom/OrderDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/src/main/java/lk/ijse/pos/dao/custom/OrderDetailsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/src/main/java/lk/ijse/pos/dao/custom/OrderDetailsDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/src/main/java/lk/ijse/pos/dao/custom/impl/OrderDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/src/main/java/lk/ijse/pos/dao/custom/impl/OrderDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/src/main/java/lk/ijse/pos/dao/custom/impl/OrderDetailsDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/src/main/java/lk/ijse/pos/dao/custom/impl/OrderDetailsDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/src/main/java/lk/ijse/pos/dto/OrderDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/src/main/java/lk/ijse/pos/dto/OrderDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/src/main/java/lk/ijse/pos/dto/OrderDetailsDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/src/main/java/lk/ijse/pos/dto/OrderDetailsDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/src/main/resources/hibernate.cfg.properties" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/src/main/resources/hibernate.cfg.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/target/BackEnd-1.0.0.war" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/target/BackEnd-1.0.0.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/controller/orderController.js" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/controller/orderController.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -211,7 +197,7 @@
       <workItem from="1706607545907" duration="237000" />
       <workItem from="1706607799972" duration="11448000" />
       <workItem from="1706623900757" duration="10397000" />
-      <workItem from="1706665580840" duration="16878000" />
+      <workItem from="1706665580840" duration="19097000" />
     </task>
     <servers />
   </component>

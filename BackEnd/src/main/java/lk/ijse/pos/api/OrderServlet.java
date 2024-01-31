@@ -100,13 +100,13 @@ public class OrderServlet extends HttpServlet {
             String qty = String.valueOf(list.getItmQTY());
             if (code == null || !code.matches("I00-(0*[1-9]\\d{0,2})")) {
                 resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "ItemCode is empty or invalid");
-                continue;
+                return;
             } else if (!price.matches("[1-9]\\d*(\\.\\d+)?")) {
                 resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Price is empty or invalid");
-                continue;
+                return;
             } else if (!qty.matches("[1-9]\\d*")) {
                 resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "ItemQTY is empty or invalid");
-                continue;
+                return;
             }
         }
         try {
@@ -117,6 +117,7 @@ public class OrderServlet extends HttpServlet {
                 resp.setStatus(HttpServletResponse.SC_CREATED);
             }else {
                 System.out.println("Order not added");
+                resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             }
         } catch (SQLException throwables) {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
