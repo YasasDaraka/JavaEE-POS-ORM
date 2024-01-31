@@ -3,6 +3,8 @@ package lk.ijse.pos.api;
 import jakarta.json.bind.Jsonb;
 import jakarta.json.bind.JsonbBuilder;
 import lk.ijse.pos.bo.BoFactory;
+import lk.ijse.pos.bo.custom.ItemBO;
+import lk.ijse.pos.dto.ItemDTO;
 
 
 import javax.servlet.ServletException;
@@ -14,7 +16,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/*
+
 @WebServlet(value = "/item")
 public class ItemServlet extends HttpServlet {
     ItemBO itemBO = BoFactory.getBoFactory().getBO(BoFactory.BOTypes.ITEM);
@@ -175,4 +177,4 @@ public class ItemServlet extends HttpServlet {
         }
     }
 }
-*/
+

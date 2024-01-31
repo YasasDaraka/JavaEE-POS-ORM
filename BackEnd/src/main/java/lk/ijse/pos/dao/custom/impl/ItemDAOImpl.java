@@ -1,68 +1,128 @@
 package lk.ijse.pos.dao.custom.impl;
 
+import lk.ijse.pos.config.SessionFactoryConfig;
 import lk.ijse.pos.dao.custom.ItemDAO;
-import lk.ijse.pos.dao.custom.impl.util.SQLUtil;
 import lk.ijse.pos.entity.Item;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
-/*
-public class ItemDAOImpl<T,ID> implements ItemDAO<Item,String> {
+
+public class ItemDAOImpl<T, ID> implements ItemDAO<Item, String> {
 
     @Override
     public boolean save(Item dto) throws SQLException, ClassNotFoundException {
-        return new SQLUtil().execute("INSERT INTO item(itmCode, itmName, itmPrice,itmQTY) " +
-                "VALUES(?, ?, ?, ?)",rs->null,dto.getItmCode(),dto.getItmName(),dto.getItmPrice(),dto.getItmQTY());
+        Session session = SessionFactoryConfig.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try {
+            String save = (String) session.save(dto);
+            transaction.commit();
+
+            if (save != null && !save.isEmpty()) {
+                System.out.println("item added");
+                return true;
+            } else {
+                System.out.println("item not added");
+                return false;
+            }
+        } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+            System.out.println("Error adding item: " + e.getMessage());
+            return false;
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+
     }
 
     @Override
     public Item search(String id) throws SQLException, ClassNotFoundException {
-        Item itm = null;
+        Session session = SessionFactoryConfig.getInstance().getSession();
         try {
-            itm = new SQLUtil().execute("SELECT * FROM item WHERE itmCode = ?", resultSet -> {
-                while (resultSet.next()) {
-                    return new Item(resultSet.getString(1), resultSet.getString(2),
-                            resultSet.getDouble(3),resultSet.getInt(4));
-                }
-                return null;
-            },id);
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }return itm;
+            Item item = session.get(Item.class, id);
+            session.close();
+            return item;
+        } catch (Exception e) {
+            System.out.println("Error search Item: " + e.getMessage());
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+        return null;
     }
 
     @Override
     public boolean delete(String id) throws SQLException, ClassNotFoundException {
-        return new SQLUtil().execute("DELETE FROM item WHERE itmCode = ?",rs->null,id);
+        Session session = SessionFactoryConfig.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            Item item = session.get(Item.class, id);
+            session.delete(item);
+            transaction.commit();
+            session.close();
+            return true;
+        } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+            System.out.println("Error delete Item: " + e.getMessage());
+            return false;
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
     }
 
     @Override
     public boolean update(Item dto) throws SQLException, ClassNotFoundException {
-        return new SQLUtil().execute("UPDATE item SET itmName = ?, itmPrice = ?,itmQTY = ? WHERE itmCode = ?",
-                rs->null,dto.getItmName(),dto.getItmPrice(),dto.getItmQTY(),dto.getItmCode());
+        Session session = SessionFactoryConfig.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            session.update (dto);
+            transaction.commit ();
+            session.close ();
+            return true;
+        }catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+            System.out.println("Error update item: " + e.getMessage());
+            return false;
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+
     }
 
     @Override
     public ArrayList<Item> getAll() throws SQLException, ClassNotFoundException {
-        ArrayList<Item> itemAr = new ArrayList<>();
+        Session session = SessionFactoryConfig.getInstance().getSession();
+        ArrayList<Item> items = new ArrayList<>();
         try {
-            List<Item> result = new SQLUtil().execute("SELECT *\n" +
-                    "FROM item\n" +
-                    "ORDER BY\n" +
-                    "  CAST(SUBSTRING(itmCode, 5) AS SIGNED),\n" +
-                    "  SUBSTRING(itmCode, 1, 4)", resultSet -> {
-                while (resultSet.next()) {
-                    Item item = new Item(resultSet.getString(1), resultSet.getString(2),
-                            resultSet.getDouble(3),resultSet.getInt(4));
-                    itemAr.add(item);
-                }
-                return null;
-            });
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }return itemAr;
+            Query<Item> query = session.createQuery("SELECT C FROM Item AS C");
+            items.addAll(query.getResultList());
+            session.close();
+            return items;
+        } catch (Exception e) {
+            System.out.println("Error load all items: " + e.getMessage());
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+        return null;
     }
 
     @Override
@@ -70,4 +130,3 @@ public class ItemDAOImpl<T,ID> implements ItemDAO<Item,String> {
         return false;
     }
 }
-*/

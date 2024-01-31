@@ -35,7 +35,7 @@ public class CustomerDAOImpl implements CustomerDAO<Customer, String> {
             if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
-            System.out.println("Error adding customer: " + e.getMessage());
+            System.out.println("Error add customer: " + e.getMessage());
             return false;
         } finally {
             if (session != null && session.isOpen()) {
@@ -52,7 +52,7 @@ public class CustomerDAOImpl implements CustomerDAO<Customer, String> {
             session.close();
             return customer;
         } catch (Exception e) {
-            System.out.println("Error adding customer: " + e.getMessage());
+            System.out.println("Error Search customer: " + e.getMessage());
         } finally {
             if (session != null && session.isOpen()) {
                 session.close();
@@ -118,7 +118,7 @@ public class CustomerDAOImpl implements CustomerDAO<Customer, String> {
             session.close();
             return customers;
         } catch (Exception e) {
-            System.out.println("Error adding customer: " + e.getMessage());
+            System.out.println("Error load all customers: " + e.getMessage());
         } finally {
             if (session != null && session.isOpen()) {
                 session.close();
