@@ -8,11 +8,12 @@ import lk.ijse.pos.entity.OrderDetails;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
+@ToString
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

@@ -4,7 +4,9 @@ import lk.ijse.pos.entity.Customer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+@ToString
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

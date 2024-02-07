@@ -5,11 +5,12 @@ import lk.ijse.pos.dto.ItemDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
+@ToString
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

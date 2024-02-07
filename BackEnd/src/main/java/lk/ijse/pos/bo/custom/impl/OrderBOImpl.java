@@ -7,6 +7,8 @@ import lk.ijse.pos.dao.custom.ItemDAO;
 import lk.ijse.pos.dao.custom.OrderDAO;
 import lk.ijse.pos.dao.custom.OrderDetailsDAO;
 import lk.ijse.pos.dto.OrderDTO;
+import lk.ijse.pos.dto.OrderDetailsDTO;
+import lk.ijse.pos.entity.Item;
 import lk.ijse.pos.entity.Order;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -27,6 +29,20 @@ public class OrderBOImpl implements OrderBO {
         try {
             System.out.println(dto);
             session.save(dto.toEntity());
+            for (OrderDetailsDTO dtos: dto.getOrderDetails()) {
+                Item item = session.get(Item.class, dtos.getItmCode());
+                if (item != null) {
+                    int current = item.getItmQTY();
+                    int ordered = dtos.getItmQTY();
+                    item.setItmQTY(current - ordered);
+                } else {
+                    System.out.println("Item not found");
+                    session.getTransaction().rollback();
+                    return false;
+                }
+                session.update(item);
+            }
+
             transaction.commit();
             System.out.println("order added");
             return true;

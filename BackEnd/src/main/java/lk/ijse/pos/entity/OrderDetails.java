@@ -6,9 +6,10 @@ import lk.ijse.pos.embedded.OrderDetailPK;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
-
+@ToString
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
